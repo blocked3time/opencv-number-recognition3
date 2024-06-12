@@ -324,7 +324,8 @@ int number_recognition(Mat img) {
     }
     int main(void) {
         Mat img(500, 900, CV_8UC3, Scalar(255, 255, 255));
-        string s[] = { "Save","Load","Clear","Run","Exit" };
+        string s[] = { "Save","Load","Clear","Run","Exit" },
+        sf[] = { "ratio","outline","center","line","center2" };
         line(img, Point(499, 0), Point(499, 499), 0, 2);
         line(img, Point(699, 0), Point(699, 499), 0, 2);
         rectangle(img, Rect(Point(0, 0), Point(img.cols, img.rows)), 0, 2);
@@ -332,9 +333,9 @@ int number_recognition(Mat img) {
             line(img, Point(499, i * 100), Point(899, i * 100), Scalar(0, 0, 0), 2);
             Size sizetext = getTextSize(s[i], FONT_HERSHEY_COMPLEX, 2, 3, 0);
             putText(img, s[i], Point(499 + (200 - sizetext.width) / 2, i * 100 + (100 + sizetext.height) / 2), FONT_HERSHEY_COMPLEX, 2, 0, 3);
-            string sf = format("ft%d", i + 1);
-            sizetext = getTextSize(sf, FONT_HERSHEY_COMPLEX, 2, 3, 0);
-            putText(img, sf, Point(699 + (200 - sizetext.width) / 2, i * 100 + (100 + sizetext.height) / 2), FONT_HERSHEY_COMPLEX, 2, 0, 3);
+
+            sizetext = getTextSize(sf[i], FONT_HERSHEY_COMPLEX, 1, 3, 0);
+            putText(img, sf[i], Point(699 + (200 - sizetext.width) / 2, i * 100 + (100 + sizetext.height) / 2), FONT_HERSHEY_COMPLEX, 1, 0, 3);
         }
         imshow("img", img);
         setMouseCallback("img", mousecallback, &img);
